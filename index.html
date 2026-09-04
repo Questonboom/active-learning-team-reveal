@@ -1,0 +1,476 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CBSE Active Learning | Team Reveal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(49,91,145,0.10), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(49,91,145,0.08), transparent 30%),
+                linear-gradient(135deg, #f5f8fc, #e7eef7);
+
+            color: #172033;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 760px;
+            text-align: center;
+        }
+
+        /* HEADER */
+
+        .header {
+            margin-bottom: 32px;
+        }
+
+        .cbse {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #315b91;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 7vw, 54px);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #687386;
+        }
+
+        /* CARD */
+
+        .card {
+            background: rgba(255,255,255,0.96);
+
+            border-radius: 28px;
+
+            padding: 55px 25px;
+
+            border: 1px solid rgba(30,50,80,0.08);
+
+            box-shadow:
+                0 20px 60px rgba(30,50,80,0.14);
+        }
+
+        .label {
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            color: #7a8494;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+        }
+
+        #team {
+            min-height: 120px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 0 10px;
+
+            font-size: clamp(38px, 8vw, 72px);
+
+            font-weight: 900;
+
+            color: #315b91;
+
+            line-height: 1.1;
+
+            text-align: center;
+        }
+
+        #status {
+            margin-top: 32px;
+
+            font-size: 15px;
+
+            color: #737d8c;
+        }
+
+        .footer {
+            margin-top: 26px;
+
+            font-size: 13px;
+
+            color: #8a93a1;
+        }
+
+        /* RANDOMISING */
+
+        .rolling {
+            animation: pulse 0.10s infinite alternate;
+        }
+
+        @keyframes pulse {
+
+            from {
+                transform: scale(0.97);
+                opacity: 0.65;
+            }
+
+            to {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+
+        }
+
+        /* FINAL REVEAL */
+
+        .revealed {
+            animation: reveal 0.85s cubic-bezier(.17,.67,.35,1.35);
+        }
+
+        @keyframes reveal {
+
+            0% {
+                transform: scale(0.55);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.10);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+        /* ERROR */
+
+        .error {
+            color: #c0392b !important;
+            font-size: 30px !important;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 500px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .card {
+                padding: 45px 15px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            #team {
+                min-height: 100px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="cbse">
+                Central Board of Secondary Education
+            </div>
+
+            <h1>Active Learning</h1>
+
+            <p class="subtitle">
+                CBP Session • Team Allocation
+            </p>
+
+        </header>
+
+
+        <!-- TEAM REVEAL -->
+
+        <section class="card">
+
+            <div class="label">
+                Your Team
+            </div>
+
+            <div id="team">
+                ?
+            </div>
+
+            <div id="status">
+                Preparing your team...
+            </div>
+
+        </section>
+
+
+        <div class="footer">
+            Capacity Building Programme
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /*
+        ==============================================
+        CBSE ACTIVE LEARNING
+        TEAM REVEAL SYSTEM
+        ==============================================
+
+        TEAM LIST:
+
+        A — Active Achievers
+        B — Brilliant Brainstormers
+        C — Creative Collaborators
+        D — Dynamic Discoverers
+        E — Engaged Explorers
+        F — Future Facilitators
+        G — Growth Catalysts
+        H — High-Impact Learners
+        I — Innovative Minds
+        J — Joyful Learners
+
+        ==============================================
+        QR FORMAT
+        ==============================================
+
+        https://YOURUSERNAME.github.io/team-reveal/?team=Active%20Achievers
+
+        ==============================================
+        */
+
+
+        // --------------------------------------------
+        // ALL TEAMS
+        // --------------------------------------------
+
+        const teams = [
+            "ACTIVE ACHIEVERS",
+            "BRILLIANT BRAINSTORMERS",
+            "CREATIVE COLLABORATORS",
+            "DYNAMIC DISCOVERERS",
+            "ENGAGED EXPLORERS",
+            "FUTURE FACILITATORS",
+            "GROWTH CATALYSTS",
+            "HIGH-IMPACT LEARNERS",
+            "INNOVATIVE MINDS",
+            "JOYFUL LEARNERS"
+        ];
+
+
+        // --------------------------------------------
+        // READ TEAM FROM QR URL
+        // --------------------------------------------
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const assignedTeam =
+            params.get("team");
+
+
+        // --------------------------------------------
+        // PAGE ELEMENTS
+        // --------------------------------------------
+
+        const teamElement =
+            document.getElementById("team");
+
+        const statusElement =
+            document.getElementById("status");
+
+
+        // --------------------------------------------
+        // NO TEAM IN URL
+        // --------------------------------------------
+
+        if (!assignedTeam) {
+
+            teamElement.textContent = "?";
+
+            statusElement.textContent =
+                "Please scan a valid team QR code.";
+
+        }
+
+
+        // --------------------------------------------
+        // START REVEAL
+        // --------------------------------------------
+
+        else {
+
+            startReveal(assignedTeam);
+
+        }
+
+
+        function startReveal(teamName) {
+
+            // Decode the team name from the QR URL
+
+            const finalTeam =
+                decodeURIComponent(teamName)
+                .trim()
+                .toUpperCase();
+
+
+            // ----------------------------------------
+            // CHECK THAT TEAM EXISTS
+            // ----------------------------------------
+
+            if (!teams.includes(finalTeam)) {
+
+                teamElement.textContent =
+                    "INVALID TEAM";
+
+                teamElement.classList.add("error");
+
+                statusElement.textContent =
+                    "This QR code contains an invalid team.";
+
+                return;
+
+            }
+
+
+            // ----------------------------------------
+            // START RANDOMISER
+            // ----------------------------------------
+
+            teamElement.classList.add("rolling");
+
+            statusElement.textContent =
+                "Selecting your team...";
+
+
+            /*
+             * Randomiser duration
+             *
+             * 2800 milliseconds = 2.8 seconds
+             */
+
+            const duration = 2800;
+
+            const startTime = Date.now();
+
+
+            // ----------------------------------------
+            // RAPID TEAM CYCLING
+            // ----------------------------------------
+
+            const roller = setInterval(() => {
+
+                const randomIndex =
+                    Math.floor(
+                        Math.random() * teams.length
+                    );
+
+                teamElement.textContent =
+                    teams[randomIndex];
+
+
+                const elapsed =
+                    Date.now() - startTime;
+
+
+                // ------------------------------------
+                // STOP
+                // ------------------------------------
+
+                if (elapsed >= duration) {
+
+                    clearInterval(roller);
+
+                    revealFinalTeam(finalTeam);
+
+                }
+
+            }, 100);
+
+        }
+
+
+        // --------------------------------------------
+        // FINAL TEAM REVEAL
+        // --------------------------------------------
+
+        function revealFinalTeam(teamName) {
+
+            teamElement.classList.remove("rolling");
+
+            // Reset animation
+
+            teamElement.classList.remove("revealed");
+
+            void teamElement.offsetWidth;
+
+
+            // Display actual assigned team
+
+            teamElement.textContent =
+                teamName;
+
+
+            // Play reveal animation
+
+            teamElement.classList.add("revealed");
+
+
+            // Update status
+
+            statusElement.textContent =
+                "Team assigned ✓";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
